@@ -5,17 +5,22 @@ import datetime as dt
 import preparation
 
 
-def _time_seikei(s):
-    # print(s)
-    t = s.split("Z")
-    s = t[0]
-    # print(s,s)
-    return dt.datetime.strptime(s, "%Y-%m-%dT%H:%M:%S.%f")
+def _time_seikei(time_s):
+    year = int(time_s[0:4])
+    month = int(time_s[5:7])
+    day = int(time_s[8:10])
+    hour = int(time_s[11:13])
+    minute = int(time_s[14:16])
+    second = int(time_s[17:19])
+    micro_sec = int(time_s[20:25])
 
-def _has_premise(thread,Post_list):
+    return dt.datetime(year, month, day, hour, minute, second, micro_sec)
+
+
+def _has_premise(thread, Post_list):
     for pi in thread.pi_list:
         post = Post_list[pi]
-        for list_si,sentence in enumerate(post.sentences):
+        for list_si, sentence in enumerate(post.sentences):
             if not sentence.related_to:
                 continue
             if sentence.related_to in post.si_list:
@@ -26,6 +31,7 @@ def _has_premise(thread,Post_list):
                 relate_si = Post_list[relate_pi].si_list.index(sentence.related_to)
                 Post_list[relate_pi].sentences[relate_si].has_claim.append(sentence.id)
         return
+
 
 # 1回以上投稿しているユーザのリストを返す
 def _preparate_users(users):
@@ -65,7 +71,7 @@ def _preparate_per_thread(original_th, Post_list):
                                       updated_at=t_posted, \
                                       body=o_p["body"], \
                                       reply_to_id=o_p["in_reply_to_id"], \
-                                      user= o_p["user"]["name"], \
+                                      user=o_p["user"]["name"], \
                                       sentences=sentences, \
                                       si_list=si_list, \
                                       belong_th_i=original_th["id"]
@@ -75,6 +81,7 @@ def _preparate_per_thread(original_th, Post_list):
     thread = preparation.ThreadClass(original_th["id"], original_th["title"], pi_list, pi_list[-1])
     _has_premise(thread, Post_list)
     return thread
+
 
 def _previous_qs(Post_list, User_list, f_individual=None):
     if not f_individual:
@@ -95,18 +102,21 @@ def _previous_qs(Post_list, User_list, f_individual=None):
 
 def preparate_main(fn_paths, Kalliopeia):
     # データをとってくる
+    # threads = Kalliopeia.load_threads()
     threads = Kalliopeia.get_threads_data()
+    print("threads", threads)
     users = Kalliopeia.get_users_data()
+    print("users", users)
 
     Threads_list = {}
     Post_list = {}
     for thread in threads:
         Threads_list[thread["id"]] = _preparate_per_thread(thread, Post_list)
 
+    print("thread list", Threads_list)
     # ユーザリストを用意
     User_list = _preparate_users(users)
 
     _previous_qs(Post_list=Post_list, User_list=User_list, f_individual=fn_paths["INDIVIDUAL_Q"])
 
     return Threads_list, Post_list, User_list
-

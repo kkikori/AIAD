@@ -1,5 +1,5 @@
 {
-  "kalliopeia_url":"http://api.kalliopeia.ijcai-20.org/",
+  "kalliopeia_url":"http://localhost:8081/",
   "facilitator":{
       "name":"facilitator",
       "password":"test7"

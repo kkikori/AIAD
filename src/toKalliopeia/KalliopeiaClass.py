@@ -13,9 +13,12 @@ class KalliopeiaClass():
         headers = {
             'Content-Type': 'application/json'
         }
+
         if token:
+            # ここが反応するのは，ファシリテータ以外のアカウントでログインする時
+            # (=使うことを想定していない,けど動くはず...)
             headers['Authorization'] = "Bearer " + token
-        else:
+        elif self.f_token:
             headers['Authorization'] = "Bearer " + self.f_token
 
         if type.lower() == 'get':
@@ -43,13 +46,9 @@ class KalliopeiaClass():
     def load_users(self):
         return self._send(endpoint="users", type="get")
 
-    def load_user(self, uname):
-        users = self.load_users()
-        for user in users:
-            if user["name"] == uname:
-                en_p = "users" + str(user["id"])
-                return self._send(endpoint=en_p, type="get")
-        raise ValueError("Kalliopeia's user '" + uname + "' is not defined.")
+    def load_user(self, ui):
+        en_p = "users/" + str(ui)
+        return self._send(endpoint=en_p, type="get")
 
     def create_post(self, data):
         self._send(endpoint="posts", data=data, type="post")
@@ -67,7 +66,7 @@ class KalliopeiaClass():
 
     def get_threads_data(self):
         thi_list = self._get_thi_list()
-        threads_data=[]
+        threads_data = []
         for th_i in thi_list:
             threads_data.append(self.load_thread(thread_i=th_i))
         return threads_data
@@ -81,13 +80,12 @@ class KalliopeiaClass():
 
     def get_users_data(self):
         ui_list = self._get_ui_list()
-
         users_data = []
         for ui in ui_list:
-            users_data.append(self.load_user(ui))
+            users_data.append(self.load_user(ui=ui))
         return users_data
 
-    def read_user_id(self,name):
+    def read_user_id(self, name):
         users = self.load_users()
         for user in users:
             if user["name"] == name:

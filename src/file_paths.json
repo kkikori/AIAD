@@ -6,7 +6,7 @@
     "PAST_POST_LIST": "past_post_list.txt"
   },
   {
-    "DATA_ROOT": "/Users/ida/Dropbox/settings",
+    "DATA_ROOT": "/Users/ida/github/AIAD/settings",
     "DRILL_PREMISE":"drill_premise_q.json",
     "SETTING":"setting.json"
   }
