@@ -86,7 +86,7 @@ def q_generator_main(POSTS, USERS, f_paths, now_time):
         print(thresholds)
         target_si, q_body = question_generator.to_individual_q(user=user, post=POSTS[target_pi], now_time=now_time,
                                                                f_paths=f_paths, thresholds=thresholds)
-        if q_body:
+        if target_si:
             _save_and_call_q(target_pi, target_si, q_body, f_paths["POST_API"], f_paths["INDIVIDUAL_Q"])
 
     return

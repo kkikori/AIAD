@@ -44,17 +44,13 @@ def main(DEBUG):
         t = "2016-12-13 05:46:42"
         now_time = dt.datetime.strptime(t, '%Y-%m-%d %H:%M:%S')
     else:
-        # now_time = dt.datetime.now(pytz.utc)
         now_time = dt.datetime.now()
-        n_str = now_time.strftime("%Y-%m-%dT%H:%M:%S")
-        now_time = dt.datetime.strptime(n_str, "%Y-%m-%dT%H:%M:%S")
-    print("now_time", now_time)
 
     # ファイルパスの準備
     f_paths = preparate_file_paths()
 
     # アクセストークンの準備,settingからの読み込み
-    Kalliopeia= toKalliopeia.preparate_kalliopeia(f_setting=f_paths["SETTING"])
+    Kalliopeia = toKalliopeia.preparate_kalliopeia(f_setting=f_paths["SETTING"])
 
     # データ読み込み
     threadlist, postlist, userlist = preparation.preparate_main(f_paths, Kalliopeia)

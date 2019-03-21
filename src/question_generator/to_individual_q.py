@@ -20,18 +20,18 @@ def _judge_user_term(post, usr, now_time, thresholds):
 
 
 def to_individual_q(user, post, now_time, f_paths, thresholds):
-    print("*" * 100)
+    # print("*" * 100)
     q_target = _judge_user_term(post=post, usr=user, now_time=now_time, thresholds=thresholds)
     if not q_target:
-        return False
+        return False, False
 
     for si, s in enumerate(post.sentences):
-        print(s.body)
+        # print(s.body)
         if s.component_type != "CLAIM":
             continue
 
         q = question_generator.drill_premise_q(post, si, s, f_paths["DRILL_PREMISE"])
-        print("q", q)
+        # print("q", q)
         if q:
             return si, q
 
