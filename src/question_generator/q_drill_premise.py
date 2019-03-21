@@ -72,7 +72,7 @@ def _check_bond(post, target_si):
 def drill_premise_q(post, si, s, f_temp):
     temps = _read_templates(f_temp)
 
-    target_s = _check_thresholder(s,temps["threshold"])
+    target_s = _check_thresholder(s, temps["threshold"])
     if not target_s:
         return False
 

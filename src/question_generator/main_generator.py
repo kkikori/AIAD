@@ -12,8 +12,8 @@ def _setting(fn):
 
     thresholds["t_user"] = dt.timedelta(minutes=int(jsonData["threshold_t_user"]))
     thresholds["c_user"] = int(jsonData["threshold_c_user"])
-    #thresholds["t_thread"] = dt.timedelta(minutes=int(jsonData["threshold_t_thread"]))
-    #thresholds["c_thread"] = int(jsonData["threshold_c_thread"])
+    # thresholds["t_thread"] = dt.timedelta(minutes=int(jsonData["threshold_t_thread"]))
+    # thresholds["c_thread"] = int(jsonData["threshold_c_thread"])
 
     f_name = jsonData["facilitator"]["name"]
     surpervisors = jsonData["supervisors"]
@@ -64,6 +64,7 @@ def q_generator_main(POSTS, USERS, f_paths, now_time):
 
     # ユーザごとに問いかけするかどうか判定
     for name_u, user in USERS.items():
+        print(name_u)
         # ファシリテータ,管理者は除く
         if (name_u in supervisors) or name_u == f_name:
             continue
@@ -81,8 +82,10 @@ def q_generator_main(POSTS, USERS, f_paths, now_time):
         if _exception_checker(target_pi, POSTS, f_name):
             continue
 
-        target_si, q_body = question_generator.to_individual_q(user=user, post=POSTS[target_pi], now_time=now_time, \
-                                                          f_paths=f_paths, thresholds=thresholds)
+        print(user)
+        print(thresholds)
+        target_si, q_body = question_generator.to_individual_q(user=user, post=POSTS[target_pi], now_time=now_time,
+                                                               f_paths=f_paths, thresholds=thresholds)
         if q_body:
             _save_and_call_q(target_pi, target_si, q_body, f_paths["POST_API"], f_paths["INDIVIDUAL_Q"])
 

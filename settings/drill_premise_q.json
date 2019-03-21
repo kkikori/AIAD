@@ -1,15 +1,15 @@
 {
   "cushions": [
-    "たくさんのコメントありがとうございます。",
-    "議論への参加、ありがとうございます！",
-    "たくさんのコメントありがとうございます。",
-    "様々な意見、ありがとうございます。",
-    "様々なコメントが出ていますね！"
+    "Thanks for your comment!",
+    "Thanks for your participation!",
+    "There are many comments!"
   ],
   "templates":[
-    "「 <c>」についていくつかコメントが挙げられています。他にコメントはありませんか？\n",
-    "「 <c>」についていくつかコメントが挙げられています。他に意見はありませんか？\n ",
-    "「 <c>」についていくつかコメントが挙げられています。ぜひ他にも、意見をあげてください。\n "
+    ">>“<c>”\n Do you have any premise or evidence for this claim?",
+    ">>“<c>”\n Do you have any premise or evidence for this opinion?",
+    ">>“<c>”\n Do you have any evidence for this comments?",
+    ">>“<c>”\n If acceptable, please tell us any detail about this comment!"
+
   ],
   "threshold":{
     "word_underline":5,

@@ -4,7 +4,7 @@
       "name":"facilitator",
       "password":"test7"
   },
-  "supervisors":["supervisors"],
+  "supervisors":["supervisor_name"],
   "interval_time": 1,
   "threshold_t_user":1,
   "threshold_c_user": 1
