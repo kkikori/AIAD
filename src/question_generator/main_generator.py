@@ -58,7 +58,6 @@ def _save_and_call_q(pi, si, q_body, fn_postapi, f_save):
     return
 
 
-
 def q_generator_main(POSTS, USERS, f_paths, now_time):
     # 閾値の設定
     thresholds, f_name, supervisors = _setting(f_paths["SETTING"])
@@ -82,10 +81,9 @@ def q_generator_main(POSTS, USERS, f_paths, now_time):
         if _exception_checker(target_pi, POSTS, f_name):
             continue
 
-        q = question_generator.to_individual_q(user=user, target_pi=target_pi, \
-                                               post=POSTS[target_pi], now_time=now_time, f_paths=f_paths, \
-                                               thresholds=thresholds, f_name=f_name)
-        if q:
-            _save_and_call_q(q["pi"], q["si"], q["q_body"], f_paths["POST_API"], f_paths["INDIVIDUAL_Q"])
+        target_si, q_body = question_generator.to_individual_q(user=user, post=POSTS[target_pi], now_time=now_time, \
+                                                          f_paths=f_paths, thresholds=thresholds)
+        if q_body:
+            _save_and_call_q(target_pi, target_si, q_body, f_paths["POST_API"], f_paths["INDIVIDUAL_Q"])
 
     return

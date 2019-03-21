@@ -61,6 +61,8 @@ def main(DEBUG):
 
     question_generator.q_generator_main(POSTS=postlist, USERS=userlist, f_paths=f_paths, now_time=now_time)
 
+    toKalliopeia.post_qs_main(fn=f_paths["POST_API"], kalliopeia=Kalliopeia)
+
 
 if __name__ == '__main__':
     args = sys.argv

@@ -3,11 +3,12 @@ import requests
 
 
 class KalliopeiaClass():
-    def __init__(self, uri):
-        self.uri = uri
+    def __init__(self, url):
+        self.url = url
         self.f_token = None
 
     def _send(self, endpoint, type, data=None, token=None):
+        uri = self.url + endpoint
         data = json.dumps(data)
         headers = {
             'Content-Type': 'application/json'
@@ -18,9 +19,9 @@ class KalliopeiaClass():
             headers['Authorization'] = "Bearer " + self.f_token
 
         if type.lower() == 'get':
-            return requests.get(self.uri, headers=headers).json()
+            return requests.get(uri, headers=headers).json()
         elif type.lower() == 'post':
-            return requests.post(self.uri, data, headers=headers).json()
+            return requests.post(uri, data, headers=headers).json()
         else:
             raise ValueError("type '" + token + "' is not defined.")
 

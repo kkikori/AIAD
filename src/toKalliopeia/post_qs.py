@@ -9,10 +9,9 @@ def _post_post(f, toKalliopeia):
     toKalliopeia.create_post(data=data)
 
 
-def post_qs_main(fn, token):
+def post_qs_main(fn, kalliopeia):
     # ファイルないの投稿をすべて投稿し、ファイルを空にする
-    print("create_post")
     f_lists = list(fn.glob("*.json"))
     for f in f_lists:
-        _post_post(f, token)
+        _post_post(f, kalliopeia)
         f.unlink()

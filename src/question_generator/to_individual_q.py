@@ -1,4 +1,3 @@
-import re
 import question_generator
 
 
@@ -20,12 +19,7 @@ def _judge_user_term(post, usr, now_time, thresholds):
     return False
 
 
-
-
-
-
-def to_individual_q(user, target_pi, post, now_time, f_paths, thresholds, f_name):
-
+def to_individual_q(user, post, now_time, f_paths, thresholds):
     q_target = _judge_user_term(post=post, usr=user, now_time=now_time, thresholds=thresholds)
     if not q_target:
         return False
@@ -34,5 +28,9 @@ def to_individual_q(user, target_pi, post, now_time, f_paths, thresholds, f_name
         if s.component_type != "CLAIM":
             continue
 
-        q = question_generator.drill_premise_q(post,si,s,f_paths["DRILL_PREMISE"])
+        q = question_generator.drill_premise_q(post, si, s, f_paths["DRILL_PREMISE"])
 
+        if q:
+            return si, q
+
+    return False
