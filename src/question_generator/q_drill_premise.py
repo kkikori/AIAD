@@ -25,15 +25,18 @@ def _make_rmsg(sbody, templates):
     return r_msg.replace("<s>", sbody)
 
 
-# 閾値的なので決めている部分
+# 閾値的に決めている部分
 def _check_thresholder(s, threshold):
     if re.search(r_question, s.body):
+        print("No.", s.id, "sentence", " is judged to be question sentence.")
         return False
 
     word_num = len((s.body).split())
     if word_num < threshold["word_underline"]:
+        print("No.", s.id, "sentence", " is too short!")
         return False
     if len(s.has_premise) > threshold["has_premise_overline"]:
+        print("No.", s.id, "sentence", "has enough premise already.")
         return False
     return True
 

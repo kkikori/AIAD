@@ -84,6 +84,7 @@ def _preparate_per_thread(original_th, Post_list):
 
 
 def _previous_qs(Post_list, User_list, f_individual=None):
+    #print("_previous_qs")
     # 過去に問いかけしたデータを読み込む
     if not f_individual.exists():
         print("[FILE ERROR]", f_individual, "is not found.")
@@ -94,6 +95,7 @@ def _previous_qs(Post_list, User_list, f_individual=None):
         header = next(reader)
         for row in reader:
             usr_name = Post_list[int(row[0])].user
+            #print(usr_name)
             User_list[usr_name].previousQ_list.append(int(row[0]))
 
 

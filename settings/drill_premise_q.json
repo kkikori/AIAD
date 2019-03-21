@@ -5,14 +5,14 @@
     "There are many comments!"
   ],
   "templates":[
-    ">>“<c>”\n Do you have any premise or evidence for this claim?",
-    ">>“<c>”\n Do you have any premise or evidence for this opinion?",
-    ">>“<c>”\n Do you have any evidence for this comments?",
-    ">>“<c>”\n If acceptable, please tell us any detail about this comment!"
+    ">>“<s>”\n Do you have any premise or evidence for this claim?",
+    ">>“<s>”\n Do you have any premise or evidence for this opinion?",
+    ">>“<s>”\n Do you have any evidence for this comments?",
+    ">>“<s>”\n If acceptable, please tell us any detail about this comment!"
 
   ],
   "threshold":{
-    "word_underline":5,
+    "word_underline":1,
     "has_premise_overline":2
   }
 }

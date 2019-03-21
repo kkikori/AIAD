@@ -47,9 +47,8 @@ def _save_and_call_q(pi, si, q_body, fn_postapi, f_save):
         writer.writerow(add_row)
     f.close()
 
-    # api attack
+    # api attacky用のセーブ
     save_q = {"body": q_body, "in_reply_to_id": pi}
-
     fn = str(pi) + ".json"
     f = (fn_postapi / fn).open("w")
     json.dump(save_q, f, indent=2, ensure_ascii=False)
@@ -64,7 +63,7 @@ def q_generator_main(POSTS, USERS, f_paths, now_time):
 
     # ユーザごとに問いかけするかどうか判定
     for name_u, user in USERS.items():
-        print(name_u)
+        print("-|-" * 10, name_u, "-|-" * 20)
         # ファシリテータ,管理者は除く
         if (name_u in supervisors) or name_u == f_name:
             continue
@@ -75,18 +74,18 @@ def q_generator_main(POSTS, USERS, f_paths, now_time):
         # 構造解析器により注釈がつけられていない場合（時刻で判定）
         if (not POSTS[target_pi].created_at < POSTS[target_pi].updated_at):
             if len(user.pi_list) < 2:
+                print(name_u, "'s comment is not labeled.")
                 continue
             target_pi = user.pi_list[-2]
 
         # 問いかけ対象外を弾く
         if _exception_checker(target_pi, POSTS, f_name):
+            print(name_u, "'s last comment is reply to facilitator or parent post.")
             continue
 
-        print(user)
-        print(thresholds)
         target_si, q_body = question_generator.to_individual_q(user=user, post=POSTS[target_pi], now_time=now_time,
                                                                f_paths=f_paths, thresholds=thresholds)
-        if target_si:
+        if q_body:
             _save_and_call_q(target_pi, target_si, q_body, f_paths["POST_API"], f_paths["INDIVIDUAL_Q"])
 
     return

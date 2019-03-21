@@ -45,6 +45,7 @@ def main(DEBUG):
         now_time = dt.datetime.strptime(t, '%Y-%m-%d %H:%M:%S')
     else:
         now_time = dt.datetime.now()
+    print("now", now_time)
 
     # ファイルパスの準備
     f_paths = preparate_file_paths()
