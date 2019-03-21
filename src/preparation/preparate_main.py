@@ -1,4 +1,3 @@
-import sys
 import csv
 import datetime as dt
 
@@ -18,6 +17,7 @@ def _time_seikei(time_s):
 
 
 def _has_premise(thread, Post_list):
+    # ポストごとにどこから関連を受けているか格納
     for pi in thread.pi_list:
         post = Post_list[pi]
         for list_si, sentence in enumerate(post.sentences):
@@ -33,8 +33,8 @@ def _has_premise(thread, Post_list):
         return
 
 
-# 1回以上投稿しているユーザのリストを返す
 def _preparate_users(users):
+    # 1回以上投稿しているユーザのリストを返す
     User_list = {}
     for usr in users:
         pi_list = []
@@ -84,10 +84,7 @@ def _preparate_per_thread(original_th, Post_list):
 
 
 def _previous_qs(Post_list, User_list, f_individual=None):
-    if not f_individual:
-        return
-
-        # 過去に問いかけしたデータを読み込む
+    # 過去に問いかけしたデータを読み込む
     if not f_individual.exists():
         print("[FILE ERROR]", f_individual, "is not found.")
         return
