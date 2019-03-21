@@ -1,0 +1,11 @@
+{
+  "kalliopeia_url":"http://api.kalliopeia.ijcai-20.org/",
+  "facilitator":{
+      "name":"facilitator",
+      "password":"test7"
+  },
+  "supervisors":["supervisors"],
+  "interval_time": 1,
+  "threshold_t_user":1,
+  "threshold_c_user": 1
+}

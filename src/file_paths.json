@@ -2,24 +2,13 @@
   {
     "DATA_ROOT": "/Users/ida/Dropbox/results_asking",
     "SETTING": "setting.json",
-    "DICTIONARY": "dictionary.txt",
-    "WORD_LIST": "wordlist_per_post.csv",
-    "COLLECTIVE_Q": "to_collective_q_list.csv",
     "INDIVIDUAL_Q": "to_individual_q_list.csv",
     "POST_API": "PostApi",
-    "MRPH_ANALYSIS": "MrphAnalysis",
     "PAST_POST_LIST": "past_post_list.txt"
   },
   {
-    "DATA_ROOT": "/Users/ida/Dropbox/AskQuestion",
-    "STOP_WORD": "stopword.txt"
-  },
-  {
-    "DATA_ROOT": "/Users/ida/Dropbox/question_templates",
+    "DATA_ROOT": "/Users/ida/Dropbox/settings",
     "DRILL_PREMISE":"drill_premise_q.json"
-  },
-  {
-    "DATA_ROOT": "/Users/ida/Dropbox/dummy_data",
-    "THREAD_CLASSIFIED": "threads"
+    "SETTING":"setting.json"
   }
 ]

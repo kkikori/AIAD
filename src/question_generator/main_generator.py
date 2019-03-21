@@ -12,8 +12,8 @@ def _setting(fn):
 
     thresholds["t_user"] = dt.timedelta(minutes=int(jsonData["threshold_t_user"]))
     thresholds["c_user"] = int(jsonData["threshold_c_user"])
-    thresholds["t_thread"] = dt.timedelta(minutes=int(jsonData["threshold_t_thread"]))
-    thresholds["c_thread"] = int(jsonData["threshold_c_thread"])
+    #thresholds["t_thread"] = dt.timedelta(minutes=int(jsonData["threshold_t_thread"]))
+    #thresholds["c_thread"] = int(jsonData["threshold_c_thread"])
 
     f_name = jsonData["facilitator"]["name"]
     surpervisors = jsonData["supervisors"]
