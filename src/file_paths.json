@@ -1,14 +1,13 @@
 [
   {
-    "DATA_ROOT": "/Users/ida/Dropbox/results_asking",
-    "SETTING": "setting.json",
+    "DATA_ROOT": "/Users/ida/github/AIAD/results_asking",
     "INDIVIDUAL_Q": "to_individual_q_list.csv",
     "POST_API": "PostApi",
     "PAST_POST_LIST": "past_post_list.txt"
   },
   {
     "DATA_ROOT": "/Users/ida/Dropbox/settings",
-    "DRILL_PREMISE":"drill_premise_q.json"
+    "DRILL_PREMISE":"drill_premise_q.json",
     "SETTING":"setting.json"
   }
 ]
