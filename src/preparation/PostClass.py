@@ -3,9 +3,6 @@ class PostClass():
     def __init__(self, pi, created_at, body, reply_to_id, user, belong_th_i, updated_at=None, sentences=None,
                  si_list=None):
         self.id = pi
-        # 2018-07-09T01:39:17.688781Z
-        # s = created_at.split(".")
-        # self.created_at = dt.datetime.strptime(s[0], "%Y-%m-%dT%H:%M:%S")
         self.created_at = created_at
 
         self.updated_at = updated_at

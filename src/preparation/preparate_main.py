@@ -102,21 +102,19 @@ def _previous_qs(Post_list, User_list, f_individual=None):
 
 def preparate_main(fn_paths, Kalliopeia):
     # データをとってくる
-    # threads = Kalliopeia.load_threads()
     threads = Kalliopeia.get_threads_data()
-    # print("threads", threads)
     users = Kalliopeia.get_users_data()
-    # print("users", users)
 
+    # スレッドクラスのリストを用意
     Threads_list = {}
     Post_list = {}
     for thread in threads:
         Threads_list[thread["id"]] = _preparate_per_thread(thread, Post_list)
 
-    # print("thread list", Threads_list)
     # ユーザリストを用意
     User_list = _preparate_users(users)
 
+    # 過去の問いかけリストを用意
     _previous_qs(Post_list=Post_list, User_list=User_list, f_individual=fn_paths["INDIVIDUAL_Q"])
 
     return Threads_list, Post_list, User_list
