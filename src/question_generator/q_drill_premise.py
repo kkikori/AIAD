@@ -5,6 +5,7 @@ import simplejson as json
 
 r_question = r"\?$|？$"
 
+
 def _read_templates(fn):
     if not fn.is_file():
         print("[file error]", fn, "is not found.")
@@ -15,7 +16,8 @@ def _read_templates(fn):
 
     return jsonData
 
-def _make_rmsg(sbody,fn_templates):
+
+def _make_rmsg(sbody, templates):
     r_msg = ""
     r_msg += random.choice(templates["cushions"])
     r_msg += random.choice(templates["templates"])
@@ -24,14 +26,14 @@ def _make_rmsg(sbody,fn_templates):
 
 
 # 閾値的なので決めている部分
-def _check_thresholder(s):
+def _check_thresholder(s, threshold):
     if re.search(r_question, s.body):
         return False
 
     word_num = len((s.body).split())
-    if word_num < 5:
+    if word_num < threshold["word_underline"]:
         return False
-    if len(s.has_premise) > 2:
+    if len(s.has_premise) > threshold["has_premise_overline"]:
         return False
     return True
 
@@ -67,8 +69,10 @@ def _check_bond(post, target_si):
     return sorted(list(set(bond_si_list)))
 
 
-def drill_premise_q(post, si, s):
-    target_s = _check_thresholder(s)
+def drill_premise_q(post, si, s, f_temp):
+    temps = _read_templates(f_temp)
+
+    target_s = _check_thresholder(s,temps["threshold"])
     if not target_s:
         return False
 
@@ -78,4 +82,4 @@ def drill_premise_q(post, si, s):
     for si in si_list:
         sbody += post.sentences[si].body
 
-    return _make_rmsg(sbody, fn_templates)
+    return _make_rmsg(sbody, temps)

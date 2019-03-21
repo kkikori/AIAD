@@ -34,5 +34,5 @@ def to_individual_q(user, target_pi, post, now_time, f_paths, thresholds, f_name
         if s.component_type != "CLAIM":
             continue
 
-        q = _generate_drill_premise_q(post,si,s)
+        q = question_generator.drill_premise_q(post,si,s,f_paths["DRILL_PREMISE"])
 
